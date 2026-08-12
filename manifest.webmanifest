@@ -1,0 +1,17 @@
+{
+  "name": "Vehicle Vault",
+  "short_name": "VehicleVault",
+  "description": "Manage your garage, maintenance, and upcoming dues on the go.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07111d",
+  "theme_color": "#0f6b5f",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

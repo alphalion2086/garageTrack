@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f6b5f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Vehicle Vault" />
+    <title>Vehicle Vault</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="screen-glow"></div>
+
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Garage Manager</p>
+        <h1>Build Your Garage Tracking System</h1>
+        <p class="hero-copy">
+          Track maintenence in one place. Add, update, and remove vehicles/
+          items with a fast, easy workflow.
+        </p>
+        <div class="hero-stats">
+          <article class="stat-card">
+            <span id="totalVehicles">0</span>
+            <p>Total Items</p>
+          </article>
+          <article class="stat-card">
+            <span id="latestYear">--</span>
+            <p>Latest Model Year</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel form-panel">
+          <h2 id="formTitle">Add Vehicle</h2>
+          <form id="vehicleForm" class="vehicle-form">
+            <label>
+              Make
+              <input
+                id="make"
+                name="make"
+                type="text"
+                placeholder="Toyota"
+                aria-label="Vehicle make"
+                required
+              />
+            </label>
+            <label>
+              Model
+              <input
+                id="model"
+                name="model"
+                type="text"
+                placeholder="Corolla"
+                aria-label="Vehicle model"
+                required
+              />
+            </label>
+            <label>
+              Year
+              <input
+                id="year"
+                name="year"
+                type="number"
+                min="1900"
+                max="2100"
+                placeholder="2026"
+                aria-label="Vehicle year"
+                required
+              />
+            </label>
+            <label>
+              Vehicle Type
+              <select id="type" name="type" aria-label="Vehicle type">
+                <option value="car">Car</option>
+                <option value="motorcycle">Motorcycle</option>
+                <option value="truck">Truck</option>
+                <option value="van">Van</option>
+                <option value="boat">Boat</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <div class="button-row">
+              <button type="submit" class="btn btn-primary" id="saveButton">
+                Save Vehicle
+              </button>
+              <button
+                type="button"
+                class="btn btn-ghost"
+                id="cancelEdit"
+                hidden
+              >
+                Cancel Edit
+              </button>
+            </div>
+          </form>
+          <p id="message" class="message" aria-live="polite"></p>
+        </article>
+        <article class="panel list-panel">
+          <div class="list-header">
+            <h2>My Garage</h2>
+            <input
+              id="search"
+              type="search"
+              placeholder="Search make or model"
+              aria-label="Search vehicles"
+            />
+          </div>
+          <ul id="vehicleList" class="vehicle-list"></ul>
+          <p id="emptyState" class="empty-state">
+            No vehicles yet. Add one to get started.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <script src="home.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch((error) => {
+            console.error("Service worker registration failed:", error);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
